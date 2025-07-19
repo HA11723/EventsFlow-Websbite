@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <title>EventFlow - Dashboard</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        width: 100%;
+        height: 100%;
+      }
+
+      header {
+        background-color: #daceba;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 100vw; /* ✅ Ensure it fills full screen */
+        margin: 0 auto; /* ✅ Remove any centering offset */
+        border-radius: 0; /* ✅ Remove radius if not needed */
+      }
+
+      nav {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        padding: 10px 15px;
+        border-radius: 8px;
+        white-space: nowrap;
+      }
+
+      .nav-link i {
+        margin-right: 8px;
+        font-size: 18px;
+      }
+
+      .nav-link:hover {
+        color: #fff5e4;
+        background-color: rgba(255, 245, 228, 0.1);
+      }
+
+      main {
+        padding: 40px 20px;
+        text-align: center;
+        width: 100%;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 768px) {
+        header {
+          padding: 10px 15px;
+        }
+
+        nav {
+          gap: 15px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .nav-link {
+          padding: 8px 12px;
+          font-size: 14px;
+        }
+
+        .nav-link i {
+          font-size: 16px;
+          margin-right: 6px;
+        }
+
+        main {
+          padding: 30px 15px;
+          width: 100%;
+        }
+
+        h1 {
+          font-size: 1.5em;
+          text-align: center;
+        }
+      }
+
+      /* Extra small screens */
+      @media (max-width: 480px) {
+        header {
+          padding: 10px;
+        }
+
+        nav {
+          gap: 10px;
+        }
+
+        .nav-link {
+          padding: 6px 10px;
+          font-size: 13px;
+        }
+
+        .nav-link span {
+          display: none;
+        }
+
+        .nav-link i {
+          margin-right: 0;
+          font-size: 18px;
+        }
+
+        main {
+          padding: 20px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header>
+      <nav>
+        <a href="/live-events" class="nav-link"
+          ><i class="fas fa-bolt"></i><span> Live</span></a
+        >
+        <a href="/planned-events" class="nav-link"
+          ><i class="fas fa-calendar-alt"></i><span> Planned</span></a
+        >
+        <a href="/profile" class="nav-link"
+          ><i class="fas fa-user-circle"></i><span> Profile</span></a
+        >
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <h1>Welcome, <%= user.firstName %>!</h1>
+    </main>
+  </body>
+</html>

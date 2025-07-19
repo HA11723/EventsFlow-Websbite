@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <title>EventFlow - Live Events</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header>
+      <nav>
+        <a href="/live-events" class="nav-link"
+          ><i class="fas fa-bolt"></i><span> Live</span></a
+        >
+        <a href="/create-events" class="nav-link"
+          ><i class="fas fa-calendar-alt"></i><span> Create Events</span></a
+        >
+        <a href="/profile" class="nav-link"
+          ><i class="fas fa-user-circle"></i><span> Profile</span></a
+        >
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1><i class="fas fa-bolt"></i> Live Events</h1>
+        <p class="page-subtitle">
+          Discover amazing events happening in your community
+        </p>
+        <div class="welcome-message">
+          <i class="fas fa-user-circle"></i>
+          <span>Welcome back, <strong><%= user.firstName %></strong>!</span>
+        </div>
+      </div>
+
+      <!-- Message Display -->
+      <% if (message) { %>
+      <div class="message">
+        <i class="fas fa-info-circle"></i>
+        <%= message %>
+      </div>
+      <% } %>
+
+      <!-- Events Stats -->
+      <div class="events-stats">
+        <div class="stat-card">
+          <i class="fas fa-calendar-check"></i>
+          <div class="stat-info">
+            <span class="stat-number"><%= events.length %></span>
+            <span class="stat-label">Total Events</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-users"></i>
+          <div class="stat-info">
+            <span class="stat-number"
+              ><%= events.filter(e => e.isOwner).length %></span
+            >
+            <span class="stat-label">Your Events</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-user-plus"></i>
+          <div class="stat-info">
+            <span class="stat-number"
+              ><%= events.filter(e => e.isAttending && !e.isOwner).length
+              %></span
+            >
+            <span class="stat-label">Joined Events</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Events Message -->
+      <% if (events.length === 0) { %>
+      <div class="no-events">
+        <div class="no-events-icon">
+          <i class="fas fa-calendar-plus"></i>
+        </div>
+        <h3>No Events Yet</h3>
+        <p>Be the first to create an amazing event in your community!</p>
+        <a href="/create-events" class="create-event-btn">
+          <i class="fas fa-plus"></i> Create Your First Event
+        </a>
+      </div>
+      <% } else { %>
+      <!-- Events Container -->
+      <div class="events-container">
+        <% events.forEach(event => { %>
+        <div
+          class="event-card <%= event.isOwner ? 'my-event' : 'other-event' %>"
+        >
+          <!-- Event Actions -->
+          <% if (event.isOwner) { %>
+          <button class="delete-btn" onclick="deleteEvent('<%= event._id %>')">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+          <% } else { %> <% if (event.isAttending) { %>
+          <button class="leave-btn" onclick="leaveEvent('<%= event._id %>')">
+            <i class="fas fa-sign-out-alt"></i> Leave
+          </button>
+          <% } else { %>
+          <button class="join-btn" onclick="joinEvent('<%= event._id %>')">
+            <i class="fas fa-user-plus"></i> Join
+          </button>
+          <% } %> <% } %>
+
+          <!-- Event Header -->
+          <div class="event-header">
+            <div class="event-main-info">
+              <div class="event-title-section">
+                <h3 class="event-name"><%= event.name %></h3>
+                <div
+                  class="event-badge <%= event.isOwner ? 'my-event-badge' : 'other-event-badge' %>"
+                >
+                  <% if (event.isOwner) { %>
+                  <i class="fas fa-crown"></i> Your Event <% } else { %>
+                  <i class="fas fa-user"></i> By <%= event.creatorName %> <% }
+                  %>
+                </div>
+              </div>
+
+              <div class="event-meta">
+                <div class="event-date-time">
+                  <span class="event-date">
+                    <i class="fas fa-calendar"></i>
+                    <%= new Date(event.date).toLocaleDateString('en-US', {
+                    weekday: 'short', month: 'short', day: 'numeric' }) %>
+                  </span>
+                  <span class="event-time">
+                    <i class="fas fa-clock"></i>
+                    <%= event.startTime %> - <%= event.endTime %>
+                  </span>
+                </div>
+
+                <div class="event-location">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <%= event.location %>
+                </div>
+              </div>
+            </div>
+
+            <div class="event-stats">
+              <div class="attendees-count">
+                <i class="fas fa-users"></i>
+                <span><%= event.attendeesCount || 0 %> attending</span>
+              </div>
+              <% if (event.maxCapacity) { %>
+              <div class="capacity-info">
+                <i class="fas fa-ticket-alt"></i>
+                <span
+                  ><%= event.attendeesCount || 0 %>/<%= event.maxCapacity
+                  %></span
+                >
+              </div>
+              <% } %>
+            </div>
+
+            <div class="expand-arrow" onclick="toggleCard(this)">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+
+          <!-- Event Details -->
+          <div class="event-details">
+            <div class="event-description">
+              <h4><i class="fas fa-info-circle"></i> About This Event</h4>
+              <p><%= event.info %></p>
+            </div>
+
+            <% if (event.attendeesCount > 0) { %>
+            <div class="attendees-section">
+              <h4><i class="fas fa-users"></i> Attendees</h4>
+              <div class="attendees-list">
+                <% event.attendeesList.slice(0, 5).forEach(attendee => { %>
+                <span class="attendee-tag"><%= attendee %></span>
+                <% }) %> <% if (event.attendeesList.length > 5) { %>
+                <span class="attendee-tag more-attendees"
+                  >+<%= event.attendeesList.length - 5 %> more</span
+                >
+                <% } %>
+              </div>
+            </div>
+            <% } %>
+
+            <div class="event-footer">
+              <small class="event-created">
+                <i class="fas fa-calendar-plus"></i>
+                Created <%= new
+                Date(event.createdAt).toLocaleDateString('en-US', { month:
+                'short', day: 'numeric', year: 'numeric' }) %>
+              </small>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } %>
+    </main>
+
+    <script>
+      function toggleCard(element) {
+        const card = element.closest(".event-card");
+        card.classList.toggle("expanded");
+
+        const arrow = element.querySelector("i");
+        if (card.classList.contains("expanded")) {
+          arrow.className = "fas fa-chevron-up";
+        } else {
+          arrow.className = "fas fa-chevron-down";
+        }
+      }
+
+      function joinEvent(eventId) {
+        fetch("/join-event", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ eventId: eventId }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert(data.message);
+              location.reload();
+            } else {
+              alert(data.message || "Error joining event");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Error joining event");
+          });
+      }
+
+      function leaveEvent(eventId) {
+        if (confirm("Are you sure you want to leave this event?")) {
+          fetch("/leave-event", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ eventId: eventId }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                alert(data.message);
+                location.reload();
+              } else {
+                alert(data.message || "Error leaving event");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Error leaving event");
+            });
+        }
+      }
+
+      function deleteEvent(eventId) {
+        if (
+          confirm(
+            "Are you sure you want to delete this event? This action cannot be undone."
+          )
+        ) {
+          fetch(`/events/${eventId}/delete`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                alert(data.message);
+                location.reload();
+              } else {
+                alert(
+                  data.message ||
+                    "Error deleting event. You may not have permission to delete this event."
+                );
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Error deleting event");
+            });
+        }
+      }
+    </script>
+  </body>
+</html>

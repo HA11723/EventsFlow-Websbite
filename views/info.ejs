@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventFlow - Event Info</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header>
+      <nav>
+        <a href="/live-events" class="nav-link">
+          <i class="fas fa-bolt"></i><span> Live</span>
+        </a>
+        <a href="/create-events" class="nav-link">
+          <i class="fas fa-calendar-alt"></i><span> Create Events</span>
+        </a>
+        <a href="/profile" class="nav-link">
+          <i class="fas fa-user-circle"></i><span> Profile</span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="step-header">
+        <div class="step-indicator">
+          <div class="step completed">
+            <i class="fas fa-clock"></i>
+            <span>Time</span>
+          </div>
+          <div class="step completed">
+            <i class="fas fa-calendar"></i>
+            <span>Date</span>
+          </div>
+          <div class="step active">
+            <i class="fas fa-info-circle"></i>
+            <span>Info</span>
+          </div>
+          <div class="step">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Location</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <div class="form-header">
+          <h1><i class="fas fa-info-circle"></i> Event Description</h1>
+          <p>Tell people what your event is about</p>
+        </div>
+
+        <form action="/save-info" method="POST" class="enhanced-form">
+          <div class="info-field">
+            <label for="eventInfo">
+              <i class="fas fa-edit"></i> Event Description
+            </label>
+            <textarea
+              id="eventInfo"
+              name="eventInfo"
+              placeholder="Describe your event, what people can expect, and any important details..."
+              rows="6"
+              maxlength="500"
+              required
+            ></textarea>
+            <div class="char-counter">
+              <span id="charCount">0</span>/500 characters
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="save-btn">
+              <i class="fas fa-save"></i> Save & Continue
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 Hadi Nasir | Developer | All rights reserved.</p>
+        <div class="social-links">
+          <a
+            href="https://github.com/HA11723"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/hadi-nasir-09362318b/"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/hadi.nasir.2/"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Character counter for textarea
+      const textarea = document.getElementById("eventInfo");
+      const charCount = document.getElementById("charCount");
+
+      textarea.addEventListener("input", function () {
+        const length = this.value.length;
+        charCount.textContent = length;
+
+        if (length > 450) {
+          charCount.style.color = "#ff6b6b";
+        } else if (length > 400) {
+          charCount.style.color = "#ffa726";
+        } else {
+          charCount.style.color = "#666";
+        }
+      });
+    </script>
+  </body>
+</html>

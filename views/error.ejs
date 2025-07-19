@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+    <style>
+      body {
+        background-color: #fff1db;
+        font-family: sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+
+      .error-box {
+        background-color: #fff;
+        border: 2px solid #e74c3c;
+        border-radius: 12px;
+        padding: 40px;
+        max-width: 400px;
+        margin: auto;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #e74c3c;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <h1>Oops! Something went wrong 😞</h1>
+      <p><%= message %></p>
+      <a href="/signup">Go back to Sign Up</a> | <a href="/signin">Sign In</a>
+    </div>
+  </body>
+</html>

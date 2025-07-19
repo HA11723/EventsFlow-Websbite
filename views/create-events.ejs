@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <title>EventFlow - Create Events</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header>
+      <nav>
+        <a href="/live-events" class="nav-link"
+          ><i class="fas fa-bolt"></i><span> Live</span></a
+        >
+        <a href="/create-events" class="nav-link"
+          ><i class="fas fa-calendar-alt"></i><span> Create Events</span></a
+        >
+        <a href="/profile" class="nav-link"
+          ><i class="fas fa-user-circle"></i><span> Profile</span></a
+        >
+      </nav>
+    </header>
+
+    <main>
+      <div class="top-text"></div>
+
+      <form action="/submit-event" method="POST">
+        <div class="form-group">
+          <label for="eventName"></label><br />
+          <input
+            type="text"
+            id="eventName"
+            name="eventName"
+            required
+            placeholder="Enter your event name"
+          />
+        </div>
+
+        <% if (message) { %>
+        <div class="message"><%= message %></div>
+        <% } %> <% if (eventTime) { %>
+        <p>
+          ⏰ Time:
+          <strong><%= eventTime.startTime %> – <%= eventTime.endTime %></strong>
+        </p>
+        <% } %> <% if (eventDate) { %>
+        <p>📅 Date: <strong><%= eventDate %></strong></p>
+        <% } %> <% if (eventInfo) { %>
+        <p>
+          <i class="fas fa-info-circle"></i> Info:
+          <strong><%= eventInfo %></strong>
+        </p>
+        <% } %> <% if (eventLocation) { %>
+        <p>
+          <i class="fas fa-map-marker-alt"></i> Location:
+          <strong><%= eventLocation %></strong>
+        </p>
+        <% } %>
+
+        <!-- Save button -->
+        <button type="submit" class="saveEvent">Save Event</button>
+      </form>
+
+      <!-- Navigation tabs for selecting details -->
+      <div class="tab-section">
+        <div class="tab-grid">
+          <a href="/time" class="tab-btn"
+            ><i class="fas fa-clock"></i><br />Time</a
+          >
+          <a href="/date" class="tab-btn"
+            ><i class="fas fa-calendar-alt"></i><br />Date</a
+          >
+          <a href="/info" class="tab-btn"
+            ><i class="fas fa-info-circle"></i><br />Info</a
+          >
+          <a href="/location" class="tab-btn"
+            ><i class="fas fa-map-marker-alt"></i><br />Location</a
+          >
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

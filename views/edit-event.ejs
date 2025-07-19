@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <title>EventFlow - Edit Event</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header>
+      <nav>
+        <a href="/live-events" class="nav-link"
+          ><i class="fas fa-bolt"></i><span> Live</span></a
+        >
+        <a href="/create-events" class="nav-link"
+          ><i class="fas fa-calendar-alt"></i><span> Create Events</span></a
+        >
+        <a href="/profile" class="nav-link"
+          ><i class="fas fa-user-circle"></i><span> Profile</span></a
+        >
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="form-container">
+        <div class="form-header">
+          <h1><i class="fas fa-edit"></i> Edit Event</h1>
+          <p>Update your event details</p>
+        </div>
+
+        <% if (message) { %>
+        <div
+          class="message <%= message.includes('✅') ? 'success' : 'error' %>"
+        >
+          <%= message %>
+        </div>
+        <% } %>
+
+        <form
+          action="/events/<%= event._id %>/edit"
+          method="POST"
+          class="enhanced-form"
+        >
+          <div class="form-group">
+            <label for="name"> <i class="fas fa-tag"></i> Event Name </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="<%= event.name %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="date"> <i class="fas fa-calendar"></i> Date </label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              value="<%= event.date.toISOString().split('T')[0] %>"
+              required
+            />
+          </div>
+
+          <div class="time-inputs">
+            <div class="time-field">
+              <label for="startTime">
+                <i class="fas fa-play"></i> Start Time
+              </label>
+              <input
+                type="time"
+                id="startTime"
+                name="startTime"
+                value="<%= event.startTime %>"
+                required
+              />
+            </div>
+
+            <div class="time-field">
+              <label for="endTime">
+                <i class="fas fa-stop"></i> End Time
+              </label>
+              <input
+                type="time"
+                id="endTime"
+                name="endTime"
+                value="<%= event.endTime %>"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="location">
+              <i class="fas fa-map-marker-alt"></i> Location
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              value="<%= event.location %>"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="info">
+              <i class="fas fa-info-circle"></i> Event Description
+            </label>
+            <textarea id="info" name="info" rows="6" required>
+<%= event.info %></textarea
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="maxCapacity">
+              <i class="fas fa-users"></i> Maximum Capacity (Optional)
+            </label>
+            <input
+              type="number"
+              id="maxCapacity"
+              name="maxCapacity"
+              value="<%= event.maxCapacity || '' %>"
+              min="1"
+              max="1000"
+              placeholder="Leave empty for unlimited"
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="save-btn">
+              <i class="fas fa-save"></i> Update Event
+            </button>
+            <a href="/live-events" class="btn btn-secondary">
+              <i class="fas fa-times"></i> Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 Hadi Nasir | Developer | All rights reserved.</p>
+        <div class="social-links">
+          <a
+            href="https://github.com/HA11723"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/hadi-nasir-09362318b/"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/hadi.nasir.2/"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EventFlow - Event Location</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <header>
+      <nav>
+        <a href="/live-events" class="nav-link">
+          <i class="fas fa-bolt"></i><span> Live</span>
+        </a>
+        <a href="/create-events" class="nav-link">
+          <i class="fas fa-calendar-alt"></i><span> Create Events</span>
+        </a>
+        <a href="/profile" class="nav-link">
+          <i class="fas fa-user-circle"></i><span> Profile</span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <div class="step-header">
+        <div class="step-indicator">
+          <div class="step completed">
+            <i class="fas fa-clock"></i>
+            <span>Time</span>
+          </div>
+          <div class="step completed">
+            <i class="fas fa-calendar"></i>
+            <span>Date</span>
+          </div>
+          <div class="step completed">
+            <i class="fas fa-info-circle"></i>
+            <span>Info</span>
+          </div>
+          <div class="step active">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Location</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <div class="form-header">
+          <h1><i class="fas fa-map-marker-alt"></i> Event Location</h1>
+          <p>Where will your event take place?</p>
+        </div>
+
+        <form action="/save-location" method="POST" class="enhanced-form">
+          <div class="location-field">
+            <label for="location">
+              <i class="fas fa-search-location"></i> Event Location
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              placeholder="e.g. Vancouver, BC or 123 Main Street, Downtown"
+              required
+            />
+            <div class="location-tips">
+              <i class="fas fa-lightbulb"></i>
+              <span>Tip: Be specific! Include city, venue, or address</span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="save-btn">
+              <i class="fas fa-save"></i> Save & Continue
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 Hadi Nasir | Developer | All rights reserved.</p>
+        <div class="social-links">
+          <a
+            href="https://github.com/HA11723"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/hadi-nasir-09362318b/"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/hadi.nasir.2/"
+            target="_blank"
+            class="social-icon"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

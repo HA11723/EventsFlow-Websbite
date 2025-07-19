@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/style.css" />
+
+    <title>EventFlow - Sign Up</title>
+  </head>
+
+  <body>
+    <!-- Brand Text -->
+    <div class="brand-text">
+      <h1 class="brand-title">EventFlow</h1>
+      <p class="brand-subtitle">Connect • Create • Celebrate</p>
+    </div>
+
+    <h1>Sign Up</h1>
+    <div class="form-container">
+      <form action="/signup" method="POST">
+        <div class="name-fields">
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            required
+          />
+          <input type="text" name="lastName" placeholder="Last Name" required />
+        </div>
+        <input type="email" name="email" placeholder="Email" required /><br />
+        <input
+          type="number"
+          name="age"
+          placeholder="Age"
+          min="13"
+          max="120"
+          required
+        /><br />
+        <input
+          type="text"
+          name="location"
+          placeholder="Location (City, State)"
+          required
+        /><br />
+        <textarea
+          name="bio"
+          placeholder="Tell us about yourself..."
+          rows="4"
+          maxlength="500"
+          required
+        ></textarea
+        ><br />
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+    <div class="signup-section">
+      <p>Already have an account?</p>
+      <a href="/signin">Sign In</a>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 Hadi Nasir | Developer | All rights reserved.</p>
+        <div class="social-links">
+          <a
+            href="https://github.com/HA11723"
+            target="_blank"
+            class="social-icon"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/hadi-nasir-09362318b/"
+            target="_blank"
+            class="social-icon"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/hadi.nasir.2/"
+            target="_blank"
+            class="social-icon"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
