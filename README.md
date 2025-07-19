@@ -1,9 +1,5 @@
 # EventFlow - Social Event Management Application
 
-## 🌐 Live Application
-
-**URL**: [Your deployed application URL here]
-
 ## 📋 Project Overview
 
 EventFlow is a social event management application that allows users to create, discover, and join events in their community. Users can create events, view all available events, join events they're interested in, and manage their profile.
@@ -389,9 +385,6 @@ The application has been thoroughly tested for:
 - ✅ Responsive design on different devices
 - ✅ Cross-browser compatibility
 
-## 📝 License
-
-ISC License
 
 ---
 
